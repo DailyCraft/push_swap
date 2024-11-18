@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 15:11:03 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/11/18 16:29:46 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/11/18 22:53:36 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	reverse_rotate(t_list **stack)
 	size_t	size;
 	t_list	*moved;
 	t_list	*last;
-	
+
 	size = ft_lstsize(*stack);
 	if (size < 2)
 		return ;

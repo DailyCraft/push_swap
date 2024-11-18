@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:12:59 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/11/18 16:29:15 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/11/18 22:53:50 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,39 +65,7 @@ static int	populate_a(int argc, char **argv, t_list **stack)
 
 static void	push_swap(t_list **stack_a, t_list **stack_b)
 {
-	while (*stack_a)
-		execute("pb", stack_a, stack_b);
-	
-	while (*stack_b)
-	{
-		t_list	*temp = (*stack_b)->next;
-		void *max = (*stack_b)->content;
-		int i = 0;
-		int max_i = 0;
-
-		while (temp)
-		{
-			if (temp->content > max)
-			{
-				max = temp->content;
-				max_i = i;
-			}
-			temp = temp->next;
-			i++;
-		}
-		
-		if (max_i <= ft_lstsize(*stack_b) / 2)
-		{
-			while ((*stack_b)->content != max)
-				execute("rb", stack_a, stack_b);
-		}
-		else
-		{
-			while ((*stack_b)->content != max)
-				execute("rrb", stack_a, stack_b);
-		}
-		execute("pa", stack_a, stack_b);
-	}
+	sort(stack_a, stack_b);
 }
 
 int	main(int argc, char **argv)
