@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 15:11:03 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/11/18 22:53:36 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/11/20 09:37:21 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,5 @@ void	execute(char *action, t_list **stack_a, t_list **stack_b)
 		reverse_rotate(stack_a);
 	if (ft_strcmp("rrb", action) == 0 || ft_strcmp("rrr", action) == 0)
 		reverse_rotate(stack_b);
-	ft_printf("%s\n", action);
+	print_execution(action);
 }
