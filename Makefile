@@ -6,13 +6,14 @@
 #    By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 10:47:34 by dvan-hum          #+#    #+#              #
-#    Updated: 2024/12/02 14:58:32 by dvan-hum         ###   ########.fr        #
+#    Updated: 2024/12/02 22:16:54 by dvan-hum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-CC = gcc -Wall -Wextra -Werror -g
+#CC = gcc -Wall -Wextra -Werror -O3
+CC = gcc -Wall -Wextra -Werror -g -fsanitize=address
 
 SRC = array.c executions.c parsing.c part_sort_utils.c part_sort.c \
 	print_filter.c print.c push_swap.c radix_sort.c
@@ -52,7 +53,7 @@ NB ?= 100
 ARGS := $(shell shuf -i 1-$(NB) -n $(NB) | xargs)
 debug: all bonus
 	@echo --- Program output ---
-	-@./$(NAME) $(ARGS)
+	-@bash -c "time ./$(NAME) $(ARGS)"
 	@echo -n "\033[1;33mInstruction count:\033[0m "
 	-@./$(NAME) $(ARGS) | wc -l
 	@echo -n "\033[1;33mCheck status:\033[0m "

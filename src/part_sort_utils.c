@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_utils.c                                       :+:      :+:    :+:   */
+/*   part_sort_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 10:06:36 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/11/20 16:09:54 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:43:02 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	min_rotations(t_list *stack, int *bubble, int size)
 		));
 }
 
-char	*better_rotation(t_list *stack, char name, int *bubble, int size)
+char	*better_rot(t_list *stack, char name, int *bubble, int size)
 {
 	int			rot;
 	const char	*rra = "rra";
