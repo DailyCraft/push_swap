@@ -6,39 +6,56 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:12:59 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/02 13:28:55 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:02:42 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* static int	is_sort(t_list *stack)
+int	get_efficiency(t_sort_func sort, t_data *data)
 {
-	if (!stack)
-		return (1);
-	while (stack->next)
-	{
-		if (stack->content > stack->next->content)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-} */
+	t_list	*dup;
+	int		iterations;
 
-static void	push_swap(t_list **stack_a, t_list **stack_b)
+	dup = lstdup(data->stack);
+	sort(&dup, &data->stack_b, data->bubble, data->size);
+	filter_opposite();
+	filter_equivalent();
+	iterations = ft_lstsize(*get_out());
+	ft_lstclear(&dup, NULL);
+	ft_lstclear(get_out(), free);
+	return (iterations);
+}
+
+static void	push_swap(t_data *data)
 {
-	part_sort(stack_a, stack_b);
+	int			most_efficient;
+	t_sort_func	effficient;
+	int			temp;
+
+	most_efficient = get_efficiency(part_sort, data);
+	effficient = part_sort;
+	temp = get_efficiency(radix_sort, data);
+	if (temp < most_efficient)
+	{
+		effficient = radix_sort;
+		most_efficient = temp;
+	}
+	effficient(&data->stack, &data->stack_b, data->bubble, data->size);
 	print_execution();
 	ft_lstclear(get_out(), free);
 }
 
 int	main(int argc, char **argv)
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
+	t_data	data;
 
-	init_stacks(argc, argv, &stack_a, &stack_b);
-	push_swap(&stack_a, &stack_b);
-	ft_lstclear(&stack_a, NULL);
-	ft_lstclear(&stack_b, NULL);
+	init_stacks(argc, argv, &data.stack, &data.stack_b);
+	data.size = ft_lstsize(data.stack);
+	data.bubble = lst_array(data.stack, data.size);
+	array_sort(data.bubble, data.size);
+	push_swap(&data);
+	ft_lstclear(&data.stack, NULL);
+	ft_lstclear(&data.stack_b, NULL);
+	free(data.bubble);
 }

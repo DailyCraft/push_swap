@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:10:15 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/02 13:50:55 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:05:03 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 
 # include <libft.h>
 
+typedef void	(*t_sort_func)(t_list **stack, t_list **stack_b,
+	int *bubble, int size);
+
+typedef struct s_data
+{
+	t_list	*stack;
+	t_list	*stack_b;
+	int		*bubble;
+	int		size;
+}	t_data;
+
+t_list	*lstdup(t_list *lst);
 int		*lst_array(t_list *lst, int size);
 void	array_sort(int *array, int size);
 int		*array_chr(int *array, int size, int value);
@@ -28,7 +40,8 @@ int		min_rotations(t_list *stack, int *bubble, int size);
 char	*better_rotation(t_list *stack, char name, int *bubble, int size);
 void	do_until(t_list **stack, t_list **stack_b, int value, char *action);
 
-void	part_sort(t_list **stack, t_list **stack_b);
+void	part_sort(t_list **stack, t_list **stack_b, int *bubble, int size);
+void	radix_sort(t_list **stack, t_list **stack_b, int *bubble, int size);
 
 void	filter_opposite(void);
 void	filter_equivalent(void);

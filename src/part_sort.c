@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 09:56:02 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/02 13:14:31 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:15:56 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,12 @@ static void	sort_part(t_list **stack, t_list **stack_b, int *bubble, int size, i
 	send_a(stack, stack_b, bubble, size);
 }
 
-void	part_sort(t_list **stack, t_list **stack_b)
+void	part_sort(t_list **stack, t_list **stack_b, int *bubble, int size)
 {
-	int	size;
-	int	*bubble;
 	int	i;
 	int	part_size;
 	int	*last;
 
-	size = ft_lstsize(*stack);
-	bubble = lst_array(*stack, size);
-	array_sort(bubble, size);
 	i = 0;
 	part_size = 0.06 * size + 18.75;
 	while (i + part_size < size)
@@ -101,5 +96,4 @@ void	part_sort(t_list **stack, t_list **stack_b)
 	}
 	do_until(stack, stack_b, bubble[0],
 		better_rotation(*stack, 'a', bubble, 1));
-	free(bubble);
 }
