@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   part_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 09:56:02 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/02 11:44:56 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/02 13:14:31 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	sort_part(t_list **stack, t_list **stack_b, int *bubble, int size, i
 	send_a(stack, stack_b, bubble, size);
 }
 
-void	sort(t_list **stack, t_list **stack_b)
+void	part_sort(t_list **stack, t_list **stack_b)
 {
 	int	size;
 	int	*bubble;

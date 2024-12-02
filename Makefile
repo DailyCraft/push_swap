@@ -6,7 +6,7 @@
 #    By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 10:47:34 by dvan-hum          #+#    #+#              #
-#    Updated: 2024/12/02 11:51:24 by dvan-hum         ###   ########.fr        #
+#    Updated: 2024/12/02 13:51:26 by dvan-hum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = push_swap
 
 CC = gcc -Wall -Wextra -Werror -g
 
-SRC = array.c executions.c parsing.c print.c push_swap.c sort_utils.c sort.c
+SRC = array.c executions.c parsing.c part_sort_utils.c part_sort.c \
+	print_filter.c print.c push_swap.c
 SRC_BONUS = checker_bonus.c executions.c parsing.c
 OBJ = $(patsubst %.c, obj/%.o, $(SRC))
 OBJ_BONUS = $(patsubst %.c, obj/%.o, $(SRC_BONUS))

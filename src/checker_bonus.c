@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:52:23 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/02 11:48:32 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/02 13:25:14 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ static int	is_legal(char *line)
 static char	*sort_status(t_list *stack, t_list *stack_b)
 {
 	if (stack_b)
-		return ("KO");
+		return ("KO\n[Stack B not empty]\n");
 	if (!stack || !stack->next)
-		return ("OK");
+		return ("OK\n");
 	while (stack->next)
 	{
 		if ((long) stack->content >= (long) stack->next->content)
-			return ("KO");
+			return ("KO\n[Stack A not sorted]\n");
 		stack = stack->next;
 	}
-	return ("OK");
+	return ("OK\n");
 }
 
 int	main(int argc, char **argv)
@@ -58,7 +58,7 @@ int	main(int argc, char **argv)
 				ft_substr(line, 0, ft_strlen(line) - 1));
 		if (!is_legal(line))
 		{
-			ft_printf("Invalid line: '%s'\n", line);
+			ft_dprintf(2, "Error\n[Invalid line: '%s']\n", line);
 			ft_free_set((void **) &line, get_next_line(0));
 			while (line)
 				ft_free_set((void **) &line, get_next_line(0));
@@ -66,9 +66,9 @@ int	main(int argc, char **argv)
 			ft_lstclear(&stack_b, NULL);
 			return (0);
 		}
-		execute_hidden(line, &stack_a, &stack_b);
+		execute(line, &stack_a, &stack_b);
 		ft_free_set((void **) &line, get_next_line(0));
 	}
-	ft_printf("%s\n", sort_status(stack_a, stack_b));
+	ft_printf(sort_status(stack_a, stack_b));
 	(ft_lstclear(&stack_a, NULL), ft_lstclear(&stack_b, NULL));
 }

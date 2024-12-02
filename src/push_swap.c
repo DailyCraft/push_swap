@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:12:59 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/02 11:51:40 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/02 13:28:55 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@
 
 static void	push_swap(t_list **stack_a, t_list **stack_b)
 {
-	sort(stack_a, stack_b);
-	print_execution(NULL);
+	part_sort(stack_a, stack_b);
+	print_execution();
+	ft_lstclear(get_out(), free);
 }
 
 int	main(int argc, char **argv)
