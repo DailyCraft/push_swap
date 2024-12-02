@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:10:15 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/11/20 15:54:09 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/02 11:14:15 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include <libft.h>
 
+void	init_stacks(int argc, char **argv, t_list **stack_a, t_list **stack_b);
+
+void	execute_hidden(char *action, t_list **stack_a, t_list **stack_b);
 void	execute(char *action, t_list **stack_a, t_list **stack_b);
 void	sort(t_list **stack, t_list **stack_b);
 void	print_execution(char *action);

@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 09:37:03 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/11/20 09:37:25 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/02 11:46:12 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,10 @@ void	print_execution(char *action)
 	}
 	if (last != action)
 		last = NULL;
+}
+
+void	execute(char *action, t_list **stack_a, t_list **stack_b)
+{
+	execute_hidden(action, stack_a, stack_b);
+	print_execution(action);
 }

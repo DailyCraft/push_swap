@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 09:56:02 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/11/20 16:20:52 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/02 11:44:56 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ static void	send_b(t_list **stack, t_list **stack_b, int *bubble, int size)
 	while (i < size)
 	{
 		while (!array_chr(bubble, size, (long)(*stack)->content))
-		{
 			execute(better, stack, NULL);
-		}
 		execute("pb", stack, stack_b);
 		i++;
 	}
@@ -103,4 +101,5 @@ void	sort(t_list **stack, t_list **stack_b)
 	}
 	do_until(stack, stack_b, bubble[0],
 		better_rotation(*stack, 'a', bubble, 1));
+	free(bubble);
 }

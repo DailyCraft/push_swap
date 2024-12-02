@@ -6,7 +6,7 @@
 #    By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 10:47:34 by dvan-hum          #+#    #+#              #
-#    Updated: 2024/11/20 16:21:48 by dvan-hum         ###   ########.fr        #
+#    Updated: 2024/12/02 11:51:24 by dvan-hum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME = push_swap
 
 CC = gcc -Wall -Wextra -Werror -g
 
-SRC = array.c executions.c print.c push_swap.c sort_utils.c sort.c
-SRC_BONUS = checker_bonus.c
+SRC = array.c executions.c parsing.c print.c push_swap.c sort_utils.c sort.c
+SRC_BONUS = checker_bonus.c executions.c parsing.c
 OBJ = $(patsubst %.c, obj/%.o, $(SRC))
 OBJ_BONUS = $(patsubst %.c, obj/%.o, $(SRC_BONUS))
 INCLUDES = ./
@@ -24,13 +24,12 @@ all: $(NAME)
 
 makelibft:
 	make -C libft
-	cp libft/libft.a ./$(NAME)
 
 $(NAME): makelibft $(OBJ)
-	$(CC) $(OBJ) -I ./libft -L ./libft -lft -o $(NAME)
+	$(CC) $(OBJ) -o $(NAME) -L ./libft -lft
 
 obj/%.o: src/%.c | ./obj
-	$(CC) -c $< -o $@ -I $(INCLUDES) -I ./libft -L ./libft -lft
+	$(CC) -c $< -o $@ -I $(INCLUDES) -I ./libft
 
 ./obj:
 	mkdir obj
@@ -46,10 +45,11 @@ fclean: clean
 re: fclean all
 
 bonus: makelibft $(OBJ_BONUS)
-	$(CC) $(OBJ_BONUS) -I ./libft -L ./libft -lft -o checker
+	$(CC) $(OBJ_BONUS) -o checker -L ./libft -lft
 
-ARGS := $(shell shuf -i 1-1000 -n ${NB} | xargs)
-debug: makelibft all
+NB ?= 100
+ARGS := $(shell shuf -i 1-$(NB) -n $(NB) | xargs)
+debug: all bonus
 	@echo --- Program output ---
 	-@./$(NAME) $(ARGS)
 	@echo -n "\033[1;33mInstruction count:\033[0m "
@@ -58,11 +58,9 @@ debug: makelibft all
 	-@./$(NAME) $(ARGS) | ./checker $(ARGS)
 	@echo "\033[1;33mWith args:\033[0m $(ARGS)"
 
-py: makelibft all
-	python3 pyviz.py `perl -e "use List::Util 'shuffle'; print join(' ', shuffle(0..(${NB} - 1)))"`
+py: all
+	[ ! -f "pyviz.py" ] && curl -O https://raw.githubusercontent.com/AdrianWR/push_swap/refs/heads/main/pyviz.py || :
+	python3 pyviz.py $(ARGS)
 
-gdb: makelibft all
-	@echo -n $(ARGS) | xclip -selection clipboard
-	@echo "\033[1;36mArguments copied to clipboard\033[0m"
-	@read dummy
-	gdb -q -tui $(NAME)
+gdb: all
+	gdb -q -tui --args $(NAME) $(ARGS)

@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 15:11:03 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/11/20 09:37:21 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/02 11:46:06 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	reverse_rotate(t_list **stack)
 	ft_lstadd_front(stack, moved);
 }
 
-void	execute(char *action, t_list **stack_a, t_list **stack_b)
+void	execute_hidden(char *action, t_list **stack_a, t_list **stack_b)
 {
 	if (ft_strcmp("sa", action) == 0 || ft_strcmp("ss", action) == 0)
 		swap(stack_a);
@@ -82,5 +82,4 @@ void	execute(char *action, t_list **stack_a, t_list **stack_b)
 		reverse_rotate(stack_a);
 	if (ft_strcmp("rrb", action) == 0 || ft_strcmp("rrr", action) == 0)
 		reverse_rotate(stack_b);
-	print_execution(action);
 }
