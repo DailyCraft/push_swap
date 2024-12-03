@@ -6,7 +6,7 @@
 #    By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 10:47:34 by dvan-hum          #+#    #+#              #
-#    Updated: 2024/12/02 22:16:54 by dvan-hum         ###   ########.fr        #
+#    Updated: 2024/12/03 15:26:08 by dvan-hum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = push_swap
 #CC = gcc -Wall -Wextra -Werror -O3
 CC = gcc -Wall -Wextra -Werror -g -fsanitize=address
 
-SRC = array.c executions.c parsing.c part_sort_utils.c part_sort.c \
+SRC = array.c executions.c little_sort.c parsing.c part_sort_utils.c part_sort.c \
 	print_filter.c print.c push_swap.c radix_sort.c
 SRC_BONUS = checker_bonus.c executions.c parsing.c
 OBJ = $(patsubst %.c, obj/%.o, $(SRC))
@@ -50,7 +50,8 @@ bonus: makelibft $(OBJ_BONUS)
 	$(CC) $(OBJ_BONUS) -o checker -L ./libft -lft
 
 NB ?= 100
-ARGS := $(shell shuf -i 1-$(NB) -n $(NB) | xargs)
+ARGS ?= $(shell shuf -i 1-$(NB) -n $(NB) | xargs)
+ARGS := $(ARGS)
 debug: all bonus
 	@echo --- Program output ---
 	-@bash -c "time ./$(NAME) $(ARGS)"

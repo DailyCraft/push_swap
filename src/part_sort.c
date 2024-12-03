@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 09:56:02 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/02 21:05:35 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/03 13:51:29 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	part_sort(t_list **stack, t_list **stack_b, int *bubble, int size)
 	int	*last;
 
 	i = 0;
-	part_size = 0.06 * size + 18.75;
+	part_size = (0.07 * size + 19.78) + 0.5;
 	while (i + part_size < size)
 		i += part_size;
 	last = NULL;

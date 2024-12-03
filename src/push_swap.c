@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:12:59 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/02 16:02:42 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:36:53 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,17 @@ static void	push_swap(t_data *data)
 		effficient = radix_sort;
 		most_efficient = temp;
 	}
+	if (data->size < 5)
+	{
+		temp = get_efficiency(little_sort, data);
+		if (temp < most_efficient || 1)
+		{
+			effficient = little_sort;
+			most_efficient = temp;
+		}
+	}
 	effficient(&data->stack, &data->stack_b, data->bubble, data->size);
-	print_execution();
+	print_execution(data);
 	ft_lstclear(get_out(), free);
 }
 

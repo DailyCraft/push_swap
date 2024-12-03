@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:10:15 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/02 19:43:02 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:36:41 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ void	do_until(t_list **stack, t_list **stack_b, int value, char *action);
 
 void	part_sort(t_list **stack, t_list **stack_b, int *bubble, int size);
 void	radix_sort(t_list **stack, t_list **stack_b, int *bubble, int size);
+void	little_sort(t_list **stack, t_list **stack_b, int *bubble, int size);
 
 void	filter_opposite(void);
 void	filter_equivalent(void);
+void	filter_redundant(int size);
 
 t_list	**get_out(void) __attribute__((weak));
-void	print_execution(void);
+void	print_execution(t_data *data);
 
 #endif

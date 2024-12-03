@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:50:20 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/02 13:50:44 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:41:41 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,40 @@ void	filter_equivalent(void)
 	}
 	if (modified)
 		filter_equivalent();
+}
+
+void	filter_redundant(int size)
+{
+	t_list	**lst;
+	t_list	*ra;
+	int		i;
+
+	lst = get_out();
+	while (*lst)
+	{
+		if (ft_strcmp((*lst)->content, "ra") != 0)
+		{
+			lst = &(*lst)->next;
+			continue ;
+		}
+		ra = *lst;
+		i = 0;
+		while (ra && ft_strcmp(ra->content, "ra") == 0)
+		{
+			i++;
+			if (i == size - 1)
+			{
+				while (*lst != ra)
+					*lst = ft_lstdelone(*lst, free);
+				ft_free_set(&ra->content, ft_strdup("rra"));
+				ra = NULL;
+				break ;
+			}
+			ra = ra->next;
+		}
+		if (i < size - 1)
+		{
+			lst = &(*lst)->next;
+		}
+	}
 }

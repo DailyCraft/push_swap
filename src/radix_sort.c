@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:43:09 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/02 15:50:25 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/03 14:53:15 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	radix_sort(t_list **stack, t_list **stack_b, int *bubble, int size)
 		i = 0;
 		while (i < size)
 		{
-			if ((((long)(*stack)->content >> bit) & 1) == 1)
+			if ((((long)(*stack)->content >> bit) & 1) != 0)
 				execute("ra", stack, stack_b);
 			else
 				execute("pb", stack, stack_b);
