@@ -6,7 +6,7 @@
 #    By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 10:47:34 by dvan-hum          #+#    #+#              #
-#    Updated: 2024/12/09 11:53:30 by dvan-hum         ###   ########.fr        #
+#    Updated: 2024/12/09 14:17:17 by dvan-hum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ clean:
 	make -C libft clean
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) checker
 	make -C libft fclean
 
 re: fclean all

@@ -6,13 +6,13 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 10:06:36 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/09 12:08:04 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/09 14:12:25 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	rotations_count(t_list *stack, int *bubble, int size, int reverse)
+int	rotations_count(t_list *stack, int *values, int size, int reverse)
 {
 	int	actions;
 	int	i;
@@ -26,7 +26,7 @@ int	rotations_count(t_list *stack, int *bubble, int size, int reverse)
 	count = 0;
 	while (count < size && i >= 0 && i < ft_lstsize(stack))
 	{
-		if (array_chr(bubble, size, (long) ft_lstgeti(stack, i)->content))
+		if (array_chr(values, size, (long) ft_lstgeti(stack, i)->content))
 			count++;
 		actions++;
 		if (!reverse)
@@ -37,22 +37,22 @@ int	rotations_count(t_list *stack, int *bubble, int size, int reverse)
 	return (actions);
 }
 
-int	min_rotations(t_list *stack, int *bubble, int size)
+int	min_rotations(t_list *stack, int *values, int size)
 {
 	return (ft_min(
-			rotations_count(stack, bubble, size, 0),
-			rotations_count(stack, bubble, size, 1)
+			rotations_count(stack, values, size, 0),
+			rotations_count(stack, values, size, 1)
 		));
 }
 
-char	*better_rot(t_list *stack, char name, int *bubble, int size)
+char	*better_rot(t_list *stack, char name, int *values, int size)
 {
 	int			rot;
 	const char	*rra = "rra";
 	const char	*rrb = "rrb";
 
-	rot = rotations_count(stack, bubble, size, 0);
-	rot -= rotations_count(stack, bubble, size, 1);
+	rot = rotations_count(stack, values, size, 0);
+	rot -= rotations_count(stack, values, size, 1);
 	if (name == 'a')
 		return ((char *) rra + (rot <= 0));
 	else

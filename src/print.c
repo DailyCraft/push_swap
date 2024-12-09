@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 09:37:03 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/09 12:03:43 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:08:30 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_execution(t_data *data)
 
 	filter_opposite();
 	filter_equivalent();
-	filter_redundant(data->size);
+	filter_redundant(get_out(), data->size);
 	lst = *get_out();
 	while (lst)
 	{

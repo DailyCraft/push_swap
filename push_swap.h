@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:10:15 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/09 12:04:08 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:23:58 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,31 @@
 
 # include <libft.h>
 
-typedef void	(*t_sort_func)(t_list **stack, t_list **stack_b,
-	int *bubble, int size);
-
 typedef struct s_data
 {
 	t_list	*stack;
 	t_list	*stack_b;
-	int		*bubble;
 	int		size;
 }	t_data;
 
 t_list	*lstdup(t_list *lst);
-int		*lst_array(t_list *lst, int size);
-void	array_sort(int *array, int size);
 int		*array_chr(int *array, int size, int value);
-void	lst_to_index(t_list *stack, int *bubble, int size);
+void	lst_to_index(t_list *stack, int size);
 
 void	execute(char *action, t_list **stack_a, t_list **stack_b);
 
 void	init_stacks(int argc, char **argv, t_list **stack_a, t_list **stack_b);
 
-int		rotations_count(t_list *stack, int *bubble, int size, int reverse);
-int		min_rotations(t_list *stack, int *bubble, int size);
-char	*better_rot(t_list *stack, char name, int *bubble, int size);
-void	do_until(t_list **stack, t_list **stack_b, int value, char *action);
+int		rotations_count(t_list *stack, int *values, int size, int reverse);
+int		min_rotations(t_list *stack, int *values, int size);
+char	*better_rot(t_list *stack, char name, int *values, int size);
 
-void	big_sort(t_list **stack, t_list **stack_b, int *bubble, int size);
-void	little_sort(t_list **stack, t_list **stack_b, int *bubble, int size);
+void	big_sort(t_list **stack, t_list **stack_b, int size);
+void	little_sort(t_list **stack, t_list **stack_b, int size);
 
 void	filter_opposite(void);
 void	filter_equivalent(void);
-void	filter_redundant(int size);
+void	filter_redundant(t_list **out, int size);
 
 t_list	**get_out(void) __attribute__((weak));
 void	print_execution(t_data *data);

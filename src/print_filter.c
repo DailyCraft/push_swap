@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:50:20 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/09 12:03:28 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:06:54 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,23 +81,21 @@ static int	remove_ra(t_list **lst, int size)
 	return (i);
 }
 
-void	filter_redundant(int size)
+void	filter_redundant(t_list **out, int size)
 {
-	t_list	**lst;
 	int		i;
 
-	lst = get_out();
-	while (*lst)
+	while (*out)
 	{
-		if (ft_strcmp((*lst)->content, "ra") != 0)
+		if (ft_strcmp((*out)->content, "ra") != 0)
 		{
-			lst = &(*lst)->next;
+			out = &(*out)->next;
 			continue ;
 		}
-		i = remove_ra(lst, size);
+		i = remove_ra(out, size);
 		if (i < size - 1)
 		{
-			lst = &(*lst)->next;
+			out = &(*out)->next;
 		}
 	}
 }

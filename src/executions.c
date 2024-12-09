@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 15:11:03 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/03 15:05:06 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/09 13:51:13 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	reverse_rotate(t_list **stack)
 void	execute(char *action, t_list **stack_a, t_list **stack_b)
 {
 	int	modified;
-	
+
 	modified = 0;
 	if (ft_strcmp("sa", action) == 0 || ft_strcmp("ss", action) == 0)
 		modified += swap(stack_a);

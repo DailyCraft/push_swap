@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 08:24:24 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/09 10:29:48 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/09 14:16:25 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_list	*lstdup(t_list *lst)
 	return (dup);
 }
 
-int	*lst_array(t_list *lst, int size)
+static int	*lst_array(t_list *lst, int size)
 {
 	int	*array;
 	int	i;
@@ -43,7 +43,7 @@ int	*lst_array(t_list *lst, int size)
 	return (array);
 }
 
-void	array_sort(int *array, int size)
+static void	array_sort(int *array, int size)
 {
 	int	i;
 	int	modified;
@@ -82,12 +82,17 @@ int	*array_chr(int *array, int size, int value)
 	return (NULL);
 }
 
-void	lst_to_index(t_list *stack, int *bubble, int size)
+void	lst_to_index(t_list *lst, int size)
 {
-	while (stack)
+	int	*array;
+
+	array = lst_array(lst, size);
+	array_sort(array, size);
+	while (lst)
 	{
-		stack->content = (void *)
-			(array_chr(bubble, size, (long) stack->content) - bubble);
-		stack = stack->next;
+		lst->content = (void *)
+			(array_chr(array, size, (long) lst->content) - array);
+		lst = lst->next;
 	}
+	free(array);
 }
