@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:49:16 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/02 14:35:08 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/09 08:19:48 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	populate_a(int argc, char **argv, t_list **stack)
 	while (i < argc)
 	{
 		temp = parse_elem(argv[i], (err = 0, &err));
-		if (err || ft_lstcontains(*stack, temp, NULL))
+		if (err || ft_lstindex(*stack, temp, NULL) != -1)
 		{
 			ft_dprintf(2, "Error\n");
 			ft_lstclear(stack, NULL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   array.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 08:24:24 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/02 14:20:33 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/09 10:29:48 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,14 @@ int	*array_chr(int *array, int size, int value)
 		i++;
 	}
 	return (NULL);
+}
+
+void	lst_to_index(t_list *stack, int *bubble, int size)
+{
+	while (stack)
+	{
+		stack->content = (void *)
+			(array_chr(bubble, size, (long) stack->content) - bubble);
+		stack = stack->next;
+	}
 }

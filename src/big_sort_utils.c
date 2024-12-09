@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   part_sort_utils.c                                  :+:      :+:    :+:   */
+/*   big_sort_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 10:06:36 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/02 19:43:02 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:08:04 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,4 @@ char	*better_rot(t_list *stack, char name, int *bubble, int size)
 		return ((char *) rra + (rot <= 0));
 	else
 		return ((char *) rrb + (rot <= 0));
-}
-
-void	do_until(t_list **stack, t_list **stack_b, int value, char *action)
-{
-	while ((!*stack || (long)(*stack)->content != value)
-			&& (!*stack_b || (long)(*stack_b)->content != value))
-		execute(action, stack, stack_b);
 }

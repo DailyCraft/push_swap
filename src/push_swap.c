@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:12:59 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/03 16:36:53 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/09 11:54:36 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,21 @@ int	get_efficiency(t_sort_func sort, t_data *data)
 static void	push_swap(t_data *data)
 {
 	int			most_efficient;
-	t_sort_func	effficient;
+	t_sort_func	efficient;
 	int			temp;
 
-	most_efficient = get_efficiency(part_sort, data);
-	effficient = part_sort;
-	temp = get_efficiency(radix_sort, data);
-	if (temp < most_efficient)
-	{
-		effficient = radix_sort;
-		most_efficient = temp;
-	}
+	most_efficient = get_efficiency(big_sort, data);
+	efficient = big_sort;
 	if (data->size < 5)
 	{
 		temp = get_efficiency(little_sort, data);
-		if (temp < most_efficient || 1)
+		if (temp <= most_efficient)
 		{
-			effficient = little_sort;
+			efficient = little_sort;
 			most_efficient = temp;
 		}
 	}
-	effficient(&data->stack, &data->stack_b, data->bubble, data->size);
+	efficient(&data->stack, &data->stack_b, data->bubble, data->size);
 	print_execution(data);
 	ft_lstclear(get_out(), free);
 }

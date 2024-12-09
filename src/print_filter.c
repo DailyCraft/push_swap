@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   print_filter.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:50:20 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/03 16:41:41 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:03:28 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	is_opposite(char *s1, char *s2)
-{
-	return ((ft_strcmp(s1, "pa") == 0 && ft_strcmp(s2, "pb") == 0)
-		|| (ft_strcmp(s1, "pb") == 0 && ft_strcmp(s2, "pa") == 0)
-		|| (ft_strcmp(s1, "ra") == 0 && ft_strcmp(s2, "rra") == 0)
-		|| (ft_strcmp(s1, "rra") == 0 && ft_strcmp(s2, "ra") == 0)
-		|| (ft_strcmp(s1, "rb") == 0 && ft_strcmp(s2, "rrb") == 0)
-		|| (ft_strcmp(s1, "rrb") == 0 && ft_strcmp(s2, "rb") == 0));
-}
 
 void	filter_opposite(void)
 {
@@ -43,23 +33,6 @@ void	filter_opposite(void)
 	}
 	if (modified)
 		filter_opposite();
-}
-
-static char	*get_equivalent(char *s1, char *s2)
-{
-	if (ft_strcmp(s1, "sa") == 0 && ft_strcmp(s2, "sb") == 0)
-		return ("ss");
-	if (ft_strcmp(s1, "sb") == 0 && ft_strcmp(s2, "sa") == 0)
-		return ("ss");
-	if (ft_strcmp(s1, "ra") == 0 && ft_strcmp(s2, "rb") == 0)
-		return ("rr");
-	if (ft_strcmp(s1, "rb") == 0 && ft_strcmp(s2, "ra") == 0)
-		return ("rr");
-	if (ft_strcmp(s1, "rra") == 0 && ft_strcmp(s2, "rrb") == 0)
-		return ("rrr");
-	if (ft_strcmp(s1, "rrb") == 0 && ft_strcmp(s2, "rra") == 0)
-		return ("rrr");
-	return (NULL);
 }
 
 void	filter_equivalent(void)
@@ -85,10 +58,32 @@ void	filter_equivalent(void)
 		filter_equivalent();
 }
 
+static int	remove_ra(t_list **lst, int size)
+{
+	t_list	*ra;
+	int		i;
+
+	ra = *lst;
+	i = 0;
+	while (ra && ft_strcmp(ra->content, "ra") == 0)
+	{
+		i++;
+		if (i == size - 1)
+		{
+			while (*lst != ra)
+				*lst = ft_lstdelone(*lst, free);
+			ft_free_set(&ra->content, ft_strdup("rra"));
+			ra = NULL;
+			break ;
+		}
+		ra = ra->next;
+	}
+	return (i);
+}
+
 void	filter_redundant(int size)
 {
 	t_list	**lst;
-	t_list	*ra;
 	int		i;
 
 	lst = get_out();
@@ -99,21 +94,7 @@ void	filter_redundant(int size)
 			lst = &(*lst)->next;
 			continue ;
 		}
-		ra = *lst;
-		i = 0;
-		while (ra && ft_strcmp(ra->content, "ra") == 0)
-		{
-			i++;
-			if (i == size - 1)
-			{
-				while (*lst != ra)
-					*lst = ft_lstdelone(*lst, free);
-				ft_free_set(&ra->content, ft_strdup("rra"));
-				ra = NULL;
-				break ;
-			}
-			ra = ra->next;
-		}
+		i = remove_ra(lst, size);
 		if (i < size - 1)
 		{
 			lst = &(*lst)->next;

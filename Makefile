@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dvan-hum <dvan-hum@student.42perpignan.    +#+  +:+       +#+         #
+#    By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 10:47:34 by dvan-hum          #+#    #+#              #
-#    Updated: 2024/12/03 15:26:08 by dvan-hum         ###   ########.fr        #
+#    Updated: 2024/12/09 11:53:30 by dvan-hum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ NAME = push_swap
 #CC = gcc -Wall -Wextra -Werror -O3
 CC = gcc -Wall -Wextra -Werror -g -fsanitize=address
 
-SRC = array.c executions.c little_sort.c parsing.c part_sort_utils.c part_sort.c \
-	print_filter.c print.c push_swap.c radix_sort.c
+SRC = array.c big_sort_utils.c big_sort.c executions.c little_sort.c parsing.c \
+	print_filter.c print.c push_swap.c
 SRC_BONUS = checker_bonus.c executions.c parsing.c
 OBJ = $(patsubst %.c, obj/%.o, $(SRC))
 OBJ_BONUS = $(patsubst %.c, obj/%.o, $(SRC_BONUS))
