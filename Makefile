@@ -6,14 +6,13 @@
 #    By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 10:47:34 by dvan-hum          #+#    #+#              #
-#    Updated: 2024/12/09 14:17:17 by dvan-hum         ###   ########.fr        #
+#    Updated: 2024/12/10 09:29:11 by dvan-hum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-#CC = gcc -Wall -Wextra -Werror -O3
-CC = gcc -Wall -Wextra -Werror -g -fsanitize=address
+CC = gcc -Wall -Wextra -Werror -O3
 
 SRC = array.c big_sort_utils.c big_sort.c executions.c little_sort.c parsing.c \
 	print_filter.c print.c push_swap.c

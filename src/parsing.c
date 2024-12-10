@@ -6,27 +6,37 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:49:16 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/09 08:19:48 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/10 09:27:05 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	*parse_elem(char *arg, int *err)
+static int	secure_atoi(char *str, int *err)
 {
-	int		result;
-	char	*temp;
+	int	result;
+	int	neg;
 
-	result = ft_atoi(arg);
-	temp = ft_itoa(result);
-	if (ft_strcmp(arg, temp) != 0)
+	result = 0;
+	neg = 1;
+	while (ft_isspace(*str))
+		str++;
+	if (*str == '+' || *str == '-')
 	{
-		*err = 1;
-		free(temp);
-		return (0);
+		if (*str == '-')
+			neg = -1;
+		str++;
 	}
-	free(temp);
-	return ((void *)(long) result);
+	while (ft_isdigit(*str))
+	{
+		if (result * 10 + *str - '0' < result)
+			return (*err = 1, 0);
+		result = result * 10 + *str - '0';
+		str++;
+	}
+	if (*str)
+		return (*err = 1, 0);
+	return (result * neg);
 }
 
 static int	populate_a(int argc, char **argv, t_list **stack)
@@ -38,7 +48,7 @@ static int	populate_a(int argc, char **argv, t_list **stack)
 	i = 1;
 	while (i < argc)
 	{
-		temp = parse_elem(argv[i], (err = 0, &err));
+		temp = (void *)(long) secure_atoi(argv[i], (err = 0, &err));
 		if (err || ft_lstindex(*stack, temp, NULL) != -1)
 		{
 			ft_dprintf(2, "Error\n");
