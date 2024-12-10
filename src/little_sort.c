@@ -6,24 +6,11 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:17:51 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/10 09:53:19 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:58:12 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	is_sort(t_list *stack)
-{
-	if (!stack)
-		return (1);
-	while (stack->next)
-	{
-		if ((long) stack->content > (long) stack->next->content)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}
 
 static int	sa_or_ra(t_list *stack, int size)
 {

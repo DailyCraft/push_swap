@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:10:15 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/09 16:23:58 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:55:34 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	lst_to_index(t_list *stack, int size);
 void	execute(char *action, t_list **stack_a, t_list **stack_b);
 
 void	init_stacks(int argc, char **argv, t_list **stack_a, t_list **stack_b);
+int		is_sort(t_list *stack);
 
 int		rotations_count(t_list *stack, int *values, int size, int reverse);
 int		min_rotations(t_list *stack, int *values, int size);
