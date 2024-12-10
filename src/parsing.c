@@ -6,7 +6,7 @@
 /*   By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 10:49:16 by dvan-hum          #+#    #+#             */
-/*   Updated: 2024/12/10 09:27:05 by dvan-hum         ###   ########.fr       */
+/*   Updated: 2024/12/10 09:41:05 by dvan-hum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	secure_atoi(char *str, int *err)
 {
-	int	result;
-	int	neg;
+	unsigned int	result;
+	int				neg;
 
 	result = 0;
 	neg = 1;
@@ -29,7 +29,7 @@ static int	secure_atoi(char *str, int *err)
 	}
 	while (ft_isdigit(*str))
 	{
-		if (result * 10 + *str - '0' < result)
+		if (result * 10 + *str - '0' > (unsigned) MAX_INT + (neg == -1))
 			return (*err = 1, 0);
 		result = result * 10 + *str - '0';
 		str++;
