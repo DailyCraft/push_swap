@@ -6,7 +6,7 @@
 #    By: dvan-hum <dvan-hum@student.42perpignan.fr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 10:47:34 by dvan-hum          #+#    #+#              #
-#    Updated: 2024/12/13 22:22:13 by dvan-hum         ###   ########.fr        #
+#    Updated: 2024/12/16 08:07:28 by dvan-hum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,10 @@ CC = gcc -Wall -Wextra -Werror -O3
 SRC = array.c big_sort_utils.c big_sort.c executions.c little_sort.c parsing.c \
 	print_filter.c print.c push_swap.c
 SRC_BONUS = checker_bonus.c executions.c parsing.c
-OBJ = $(patsubst %.c, obj/%.o, $(SRC))
-OBJ_BONUS = $(patsubst %.c, obj/%.o, $(SRC_BONUS))
+OBJ = $(SRC:%.c=obj/%.o)
+OBJ_BONUS = $(SRC_BONUS:%.c=obj/%.o)
 INCLUDES = ./
+LIBS = libft/libft.a
 
 ifndef VERBOSE
 MAKEFLAGS += --silent
@@ -27,12 +28,16 @@ endif
 
 all: $(NAME)
 
-makelibft:
-	make -C libft
+%.a:
+	make -C $(shell dirname $@)
 
-$(NAME): makelibft $(OBJ)
+$(NAME): $(LIBS) $(OBJ)
 	echo "\n\t\e[1;32mBuilding\e[0m \e[36m$(NAME)\e[0m\n"
 	$(CC) $(OBJ) -o $(NAME) -L ./libft -lft
+
+checker: $(LIBS) $(OBJ_BONUS)
+	echo "\n\t\e[1;32mBuilding\e[0m \e[36mchecker\e[0m\n"
+	$(CC) $(OBJ_BONUS) -o checker -L ./libft -lft
 
 obj/%.o: src/%.c
 	echo "$(NAME) \e[90m➤\e[0m \e[32mCompiling\e[0m \e[36m$<\e[0m"
@@ -53,9 +58,7 @@ fclean:
 
 re: fclean all
 
-bonus: makelibft $(OBJ_BONUS)
-	echo "\n\t\e[1;32mBuilding\e[0m \e[36mchecker\e[0m\n"
-	$(CC) $(OBJ_BONUS) -o checker -L ./libft -lft
+bonus: checker
 
 NB ?= 100
 ARGS ?= $(shell shuf -i 1-$(NB) -n $(NB) | xargs)
